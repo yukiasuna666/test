@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        特殊键盘按键：shift ctrl alt meta
+        常用事件修饰符：enter tab delete esc space up down left right
+     -->
+    <!-- 准备容器 -->
+    <div id="root">
+        <h2>{{ message }}</h2>
+        <input type="text" placeholder="请输入内容" @keyup.ctrl="showinfo">
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+        new Vue({
+            el:'#root',
+            data: {
+               message:"Hello Vue!"
+            },
+            methods: {
+               showinfo(e) {
+                   console.log(`输入内容为${e.target.value}`);
+               }
+            }
+        })
+</script>
+</body>
+
+
+</html>

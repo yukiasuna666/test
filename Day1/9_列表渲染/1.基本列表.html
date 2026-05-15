@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <ul>
+            <li v-for="p in persons" :key="p.id">{{p.name}}-{{p.age}}</li><br>
+            <li v-for="(p,index) of persons " :key="p.id">{{p.name}}-{{p.age}}</li><br>
+            <li v-for="(c, index) of cars" :key="c.name">{{c}}-{{index}}</li><br>
+            <li v-for="(a,index) of str" :key="index">{{a}}-{{index}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        new Vue({
+            el:'#root',
+            data:{
+                persons:[
+                    {id:'001',name:'张三', age:18},
+                    {id:'002',name:'李四', age:19},
+                    {id:'003',name:'王五', age:20}
+                ],
+                cars:{
+                    name:'奔驰',
+                    price:1000000
+                },
+                str:'hello'
+            }
+        })
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        Vue事件修饰符：
+            1.prevent：阻止事件的默认行为
+            2.stop：阻止事件冒泡
+            3.once：只触发一次事件
+            4.capture：使用事件捕获模式
+            5.self：只当event.target是当前操作的元素时才触发事件
+            6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+     -->
+    <!-- 准备容器 -->
+    <div id="root">
+        <h2>{{ message }}</h2>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        new Vue({
+            el:'#root',
+            data: {
+               message: 'Hello Vue!'
+            },
+            methods: {
+               
+            }
+        })
+</script>
+</body>
+
+
+</html>

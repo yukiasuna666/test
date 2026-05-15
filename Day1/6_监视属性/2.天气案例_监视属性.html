@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        监视属性watch：
+            1.当被监视的属性变化时，回调函数自动调用，进行相关操作
+            2.监视的属性必须存在，才能进行监视
+            3.watch两种写法：
+                传入watch配置 watch:{}
+                vm.$watch()
+     -->
+    <!-- 准备容器 -->
+    <div id="root">
+        <h2>今天天气为{{ weather }}</h2>
+        <button @click="changeWeather">改变天气</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                weatherHot:true
+                
+            },
+            computed:{
+                weather(){
+                    return this.weatherHot ? '晴天' : '阴天';
+                }
+            },
+            methods:{
+                changeWeather(){
+                    this.weatherHot = !this.weatherHot;
+                }
+            },
+            // watch:{
+            //     weatherHot:{
+            //         immediate:true,//是否在监听开始之后立即以当前的值触发回调
+            //         handler(newValue, oldValue){
+            //             console.log('天气改变了',newValue, oldValue);
+            //         }
+            //     }
+            // }
+        })
+        vm.$watch('weatherHot', (newValue, oldValue) => {
+                console.log('天气改变了',newValue, oldValue);
+            }, {
+                immediate:true
+            })
+</script>
+</body>
+
+
+</html>

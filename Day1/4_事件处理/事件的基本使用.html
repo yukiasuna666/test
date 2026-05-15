@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        1.使用v-on：xxx或@xxx来绑定事件，xxx为事件名称，如click等
+        2.事件回调需要配置在methods对象上，最终会在vm上
+        3.methods配置函数不要用箭头函数，会改变this指向
+        4.methods配置函数都是被vue所管理的函数，this指向vm或组件实例对象
+        5.@click="demo"等价于@click="demo($event)"s，但后者可传递参数
+     -->
+    <div id="root">
+        <h2>{{ message }}</h2>
+        <button v-on:click="showinfo1">点击我提示信息</button>
+        <!-- v-on：可简写为@ -->
+        <button @click="showinfo2($event,666)">点击我提示信息</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+        new Vue({
+            el:'#root',
+            data: {
+                message: '事件处理'
+            },
+            methods: {
+                showinfo1(event){
+                    console.log(event)
+                },
+                showinfo2(event,number){
+                    console.log(event)
+                    console.log(number)
+                }
+            }
+        })
+</script>
+</body>
+
+
+</html>

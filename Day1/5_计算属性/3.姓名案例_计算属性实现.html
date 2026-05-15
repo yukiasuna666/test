@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        1.定义：要用的属性不存在，需要计算已有属性得来
+        2.原理：借助了Obejct.defineProperty()方法的getter和setter函数
+        3.get函数什么时候执行：
+            (1)初次读取时执行1次
+            (2)依赖数据被修改时
+        4.优势：与methods相比，内部有缓存机制(复用)，效率更高，调试方便
+        5.备注：
+            计算属性最终出现在vm上，可直接读取使用
+            如果计算属性要更改，必须使用set函数响应修改，引起更改计算属性依赖的数据发生变化
+    -->
+    <!-- 准备容器 -->
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br>
+        名：<input type="text" v-model="lastName"><br>
+        全名：<span>{{ fullName }}</span>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                firstName:'张',
+                lastName:'三',
+                
+            },
+            computed:{
+                fullName:{
+                    get(){
+                        return `${this.firstName} - ${this.lastName}`;
+                    },
+                    set(Value){
+                        const names = Value.split(' - ');
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                    }
+                } 
+            }
+        })
+</script>
+</body>
+
+
+</html>

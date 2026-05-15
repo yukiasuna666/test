@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let number = 10
+        let person ={
+            name: 'John',
+            sex :'男',
+            // age: 30
+        }
+
+        Object.defineProperty(person, 'age', {
+            // value: 30,
+            // writable: true, // 控制属性是否可以被修改，默认值是false
+            // enumerable: true, // 控制属性是否可以被枚举，默认值是false
+            // configurable: true // 控制属性是否可以被删除，默认值是false 
+
+            //读取person中age的值时，get函数（getter）被调用，返回age的值
+            get(){
+                return number
+            },
+
+            //修改person的age属性时，set函数（setter）被调用，将新值赋给number变量
+            set(newValue){
+                number = newValue
+            }
+        });
+    </script>
+</body>
+</html>

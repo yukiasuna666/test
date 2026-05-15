@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <ul>
+            <input type="text" v-model="keyWord">
+            <li v-for="(p,index) of filtpersons " :key="index">{{p.name}}-{{p.age}}-{{p.sex}}</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                persons:[
+                    {id:'001',name:'马冬梅', age:18, sex:'女'},
+                    {id:'002',name:'周冬雨', age:19, sex:'女'},
+                    {id:'003',name:'周杰伦', age:20, sex:'男'},
+                    {id:'004',name:'温兆伦', age:21, sex:'男'}
+                ],
+            },
+            computed:{
+                filtpersons(){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyWord) !== -1
+                    })
+                }
+            }// watch:{
+            //     keyWord:{
+            //         immediate:true,
+            //         handler(Val){
+            //             this.filtpersons = this.persons.filter((p)=>{
+            //                 return p.name.indexOf(Val) !== -1
+            //             })    
+            //         }
+            //     }
+            // }
+        })
+
+</script>
+</body>
+
+
+</html>
