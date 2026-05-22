@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备容器 -->
+    <div id="root">
+        <h1>学生信息</h1>
+        <button @click="student.age++">年龄+1岁</button> <br/>
+        <button @click="addSex">添加性别属性，默认值：男</button> <br/>
+        <button @click="student.sex = '女'">修改性别</button>
+        <button @click="addFriend">在列表首位添加一个朋友</button> <br/>
+        <button @click="updataFirstFriendName">修改第一个朋友的名字为：张三</button> <br/>
+        <button @click="addHobby">添加一个爱好</button> <br/>
+        <button @click="updateFirstHobby">修改第一个爱好为：开车</button> <br/>
+        <h3>姓名：{{student.name}}</h3>
+        <h3>年龄：{{student.age}}</h3>
+        <h3 v-if="student.sex">性别：{{student.sex}}</h3>
+        <h3>爱好：{{student.hobbies}}</h3>
+        <ul>
+            <li v-for="h in student.hobbies" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3>朋友们：</h3>
+        <ul>
+            <li v-for="f in student.friends" :key="index">
+                {{f.name}} - {{f.age}}
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//设置为 false 以阻止 vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                student:{
+                    name:'张三',
+                    age:20,
+                    hobbies:['篮球','足球','乒乓球'],
+                    friends:[
+                        {name:'李四',age:18},
+                        {name:'王五',age:22}
+                    ]
+                }
+            },
+            methods:{
+                addSex(){
+                    Vue.set(this.student, 'sex', '男')
+                },
+                addFriend(){
+                    this.student.friends.unshift({name:'赵六',age:25})
+                },
+                updataFirstFriendName(){
+                    this.student.friends[0].name = '张三'
+                },
+                addHobby(){
+                    this.student.hobbies.push('开车')
+                },
+                updateFirstHobby(){
+                    this.student.hobbies[0] = '开车'
+                }
+            }
+
+        })
+</script>
+</body>
+
+
+</html>
